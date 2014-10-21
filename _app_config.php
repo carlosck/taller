@@ -116,6 +116,11 @@ GlobalConfig::$ROUTE_MAP = array(
 	'PUT:api/venta/(:num)' => array('route' => 'Venta.Update', 'params' => array('id' => 2)),
 	'DELETE:api/venta/(:num)' => array('route' => 'Venta.Delete', 'params' => array('id' => 2)),
 
+	// Venta
+	'GET:venta' => array('route' => 'Vender.ListView'),
+	
+		
+
 	// catch any broken API urls
 	'GET:api/(:any)' => array('route' => 'Default.ErrorApi404'),
 	'PUT:api/(:any)' => array('route' => 'Default.ErrorApi404'),

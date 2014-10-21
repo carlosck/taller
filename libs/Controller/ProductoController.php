@@ -52,7 +52,7 @@ class ProductoController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Id,SeccionId,Nombre,Foto,Codigo,PrecioSugerido,Status'
+				new CriteriaFilter('Id,SeccionId,Nombre,Foto,Codigo,PrecioSugerido,Estatus'
 				, '%'.$filter.'%')
 			);
 
@@ -87,7 +87,7 @@ class ProductoController extends AppBaseController
 				// if page is specified, use this instead (at the expense of one extra count query)
 				$pagesize = $this->GetDefaultPageSize();
 
-				$productos = $this->Phreezer->Query('Producto',$criteria)->GetDataPage($page, $pagesize);
+				$productos = $this->Phreezer->Query('ProductoReporter',$criteria)->GetDataPage($page, $pagesize);
 				$output->rows = $productos->ToObjectArray(true,$this->SimpleObjectParams());
 				$output->totalResults = $productos->TotalResults;
 				$output->totalPages = $productos->TotalPages;
@@ -97,7 +97,7 @@ class ProductoController extends AppBaseController
 			else
 			{
 				// return all results
-				$productos = $this->Phreezer->Query('Producto',$criteria);
+				$productos = $this->Phreezer->Query('ProductoReporter',$criteria);
 				$output->rows = $productos->ToObjectArray(true, $this->SimpleObjectParams());
 				$output->totalResults = count($output->rows);
 				$output->totalPages = 1;
@@ -158,7 +158,7 @@ class ProductoController extends AppBaseController
 			$producto->Foto = $this->SafeGetVal($json, 'foto');
 			$producto->Codigo = $this->SafeGetVal($json, 'codigo');
 			$producto->PrecioSugerido = $this->SafeGetVal($json, 'precioSugerido');
-			$producto->Status = $this->SafeGetVal($json, 'status');
+			$producto->Estatus = $this->SafeGetVal($json, 'estatus');
 
 			$producto->Validate();
 			$errors = $producto->GetValidationErrors();
@@ -208,7 +208,7 @@ class ProductoController extends AppBaseController
 			$producto->Foto = $this->SafeGetVal($json, 'foto', $producto->Foto);
 			$producto->Codigo = $this->SafeGetVal($json, 'codigo', $producto->Codigo);
 			$producto->PrecioSugerido = $this->SafeGetVal($json, 'precioSugerido', $producto->PrecioSugerido);
-			$producto->Status = $this->SafeGetVal($json, 'status', $producto->Status);
+			$producto->Estatus = $this->SafeGetVal($json, 'status', $producto->Estatus);
 
 			$producto->Validate();
 			$errors = $producto->GetValidationErrors();

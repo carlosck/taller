@@ -34,17 +34,17 @@
 		<table class="collection table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th id="header_Id">Id<% if (page.orderBy == 'Id') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<!--<th id="header_Id">Id<% if (page.orderBy == 'Id') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th> -->
 				<th id="header_Nombre">Nombre<% if (page.orderBy == 'Nombre') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Status">Status<% if (page.orderBy == 'Status') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Estatus">Estatus<% if (page.orderBy == 'Estatus') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 			</tr>
 		</thead>
 		<tbody>
 		<% items.each(function(item) { %>
 			<tr id="<%= _.escape(item.get('id')) %>">
-				<td><%= _.escape(item.get('id') || '') %></td>
+				<!-- <td><%= _.escape(item.get('id') || '') %></td> -->
 				<td><%= _.escape(item.get('nombre') || '') %></td>
-				<td><%= _.escape(item.get('status') || '') %></td>
+				<td><%if (item.get('estatus')==1) { %><i class="icon-ok"><% } else { %><i class="icon-remove"><% } %></td>
 			</tr>
 		<% }); %>
 		</tbody>
@@ -71,10 +71,10 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="statusInputContainer" class="control-group">
-					<label class="control-label" for="status">Status</label>
+				<div id="estatusInputContainer" class="control-group">
+					<label class="control-label" for="estatus">Estatus</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="status" placeholder="Status" value="<%= _.escape(item.get('status') || '') %>">
+						<input type="checkbox" id="estatus" name="estatus" value="1" <% if(_.escape(item.get('estatus'))==1) { %> checked<%} %>> 						
 						<span class="help-inline"></span>
 					</div>
 				</div>

@@ -118,6 +118,7 @@ var page = {
 
 			}, model.longPollDuration);
 		}
+		
 	},
 
 	/**
@@ -205,8 +206,9 @@ var page = {
 	 * @param bool show the delete button
 	 */
 	renderModelView: function(showDeleteButton)	{
+		console.log("este");
 		page.modelView.render();
-
+		
 		app.hideProgress('modelLoader');
 
 		// initialize any special controls
@@ -223,6 +225,33 @@ var page = {
 		
 		$('.timepicker-default').timepicker({ defaultTime: 'value' });
 
+		var bar = $("#miform1").find('.bar');
+		var percent = $('.percent1');
+		var status = $('#status1');
+		
+		console.log(bar);
+		console.log("-----------------------");
+		$('#miform1').ajaxForm({
+		    beforeSend: function() {
+		        status.empty();
+		        var percentVal = '0%';
+		        bar.width(percentVal)
+		        percent.html(percentVal);
+		    },
+		    uploadProgress: function(event, position, total, percentComplete) {
+		        var percentVal = percentComplete + '%';
+		        bar.width(percentVal)
+		        percent.html(percentVal);
+		    },
+			complete: function(xhr) {				
+				$("#foto").val($.trim(xhr.responseText));
+			}
+		});		
+		$("#archivo_upload1").on("change",function()
+		{
+			console.log("change");
+			$('#miform1').submit();
+		});
 
 		if (showDeleteButton) {
 			// attach click handlers to the delete buttons
@@ -266,7 +295,8 @@ var page = {
 
 			'nombre': $('input#nombre').val(),
 			'foto': $('input#foto').val(),
-			'estatus': $('input#estatus').val()
+			'estatus':  $('input#estatus').is(':checked') ? 1 : 0
+			
 		}, {
 			wait: true,
 			success: function(){

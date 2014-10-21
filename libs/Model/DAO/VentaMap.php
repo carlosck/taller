@@ -52,9 +52,8 @@ class VentaMap implements IDaoMap, IDaoMap2
 		{
 			self::$FM = Array();
 			self::$FM["Id"] = new FieldMap("Id","venta","id",true,FM_TYPE_BIGINT,20,null,true);
-			self::$FM["ProductoId"] = new FieldMap("ProductoId","venta","producto_id",false,FM_TYPE_INT,11,null,false);
-			self::$FM["PrecioSugerido"] = new FieldMap("PrecioSugerido","venta","precio_sugerido",false,FM_TYPE_UNKNOWN,null,null,false);
-			self::$FM["PrecioFinal"] = new FieldMap("PrecioFinal","venta","precio_final",false,FM_TYPE_UNKNOWN,null,null,false);
+			
+			self::$FM["Total"] = new FieldMap("Total","venta","total",false,FM_TYPE_UNKNOWN,null,null,false);			
 			self::$FM["CajaId"] = new FieldMap("CajaId","venta","caja_id",false,FM_TYPE_INT,11,null,false);
 			self::$FM["Fecha"] = new FieldMap("Fecha","venta","fecha",false,FM_TYPE_DATETIME,null,null,false);
 			self::$FM["Comentarios"] = new FieldMap("Comentarios","venta","comentarios",false,FM_TYPE_VARCHAR,250,null,false);
@@ -72,7 +71,7 @@ class VentaMap implements IDaoMap, IDaoMap2
 		{
 			self::$KM = Array();
 			self::$KM["venta_ibfk_2"] = new KeyMap("venta_ibfk_2", "CajaId", "Caja", "Id", KM_TYPE_MANYTOONE, KM_LOAD_LAZY); // you change to KM_LOAD_EAGER here or (preferrably) make the change in _config.php
-			self::$KM["venta_ibfk_1"] = new KeyMap("venta_ibfk_1", "ProductoId", "Producto", "Id", KM_TYPE_MANYTOONE, KM_LOAD_LAZY); // you change to KM_LOAD_EAGER here or (preferrably) make the change in _config.php
+			
 		}
 		return self::$KM;
 	}

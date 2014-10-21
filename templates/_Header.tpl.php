@@ -65,7 +65,8 @@
 								<li <?php if ($this->nav=='cajas') { echo 'class="active"'; } ?>><a href="./cajas">Cajas</a></li>
 								<li <?php if ($this->nav=='productos') { echo 'class="active"'; } ?>><a href="./productos">Productos</a></li>
 								<li <?php if ($this->nav=='secciones') { echo 'class="active"'; } ?>><a href="./secciones">Secciones</a></li>
-								<li <?php if ($this->nav=='ventas') { echo 'class="active"'; } ?>><a href="./ventas">Ventas</a></li>
+								<li <?php if ($this->nav=='ventas') { echo 'class="active"'; } ?>><a href="./ventas">Resumen</a></li>
+								<li <?php if ($this->nav=='venta') { echo 'class="active"'; } ?>><a href="./venta">Venta</a></li>
 								</ul>
 								</li>
 							</ul>

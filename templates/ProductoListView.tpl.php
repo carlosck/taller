@@ -6,7 +6,8 @@
 ?>
 
 <script type="text/javascript">
-	$LAB.script("scripts/app/productos.js").wait(function(){
+	$LAB.script("scripts/libs/jquery.form.js")
+	.script("scripts/app/productos.js").wait(function(){
 		$(document).ready(function(){
 			page.init();
 		});
@@ -34,28 +35,32 @@
 		<table class="collection table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th id="header_Id">Id<% if (page.orderBy == 'Id') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_SeccionId">Seccion Id<% if (page.orderBy == 'SeccionId') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<!-- <th id="header_Id">Id<% if (page.orderBy == 'Id') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th> -->
+				
 				<th id="header_Nombre">Nombre<% if (page.orderBy == 'Nombre') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Foto">Foto<% if (page.orderBy == 'Foto') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Codigo">Codigo<% if (page.orderBy == 'Codigo') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<th id="header_PrecioSugerido">Precio Sugerido<% if (page.orderBy == 'PrecioSugerido') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Status">Status<% if (page.orderBy == 'Status') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_SeccionId">Seccion <% if (page.orderBy == 'Seccion') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
+				<th id="header_Estatus">Status<% if (page.orderBy == 'Estatus') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 -->
 			</tr>
 		</thead>
 		<tbody>
 		<% items.each(function(item) { %>
 			<tr id="<%= _.escape(item.get('id')) %>">
-				<td><%= _.escape(item.get('id') || '') %></td>
-				<td><%= _.escape(item.get('seccionId') || '') %></td>
+				<!-- <td><%= _.escape(item.get('id') || '') %></td> -->
+				
 				<td><%= _.escape(item.get('nombre') || '') %></td>
-				<td><%= _.escape(item.get('foto') || '') %></td>
+				<td><div class="show_bg" style="background-image: url('img/productos/<%= _.escape(item.get('foto') || '') %>')"></td>
 				<td><%= _.escape(item.get('codigo') || '') %></td>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<td><%= _.escape(item.get('precioSugerido') || '') %></td>
-				<td><%= _.escape(item.get('status') || '') %></td>
+				<td><%= _.escape(item.get('seccion') || '') %></td>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
+				<td><%= _.escape(item.get('estatus') || '') %></td>
 -->
 			</tr>
 		<% }); %>
@@ -67,7 +72,7 @@
 
 	<!-- underscore template for the model -->
 	<script type="text/template" id="productoModelTemplate">
-		<form class="form-horizontal" onsubmit="return false;">
+		<div class="form-horizontal">
 			<fieldset>
 				<div id="idInputContainer" class="control-group">
 					<label class="control-label" for="id">Id</label>
@@ -77,7 +82,7 @@
 					</div>
 				</div>
 				<div id="seccionIdInputContainer" class="control-group">
-					<label class="control-label" for="seccionId">Seccion Id</label>
+					<label class="control-label" for="seccionId">Seccion</label>
 					<div class="controls inline-inputs">
 						<select id="seccionId" name="seccionId"></select>
 						<span class="help-inline"></span>
@@ -90,6 +95,7 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
+				<form id="miform1" class="form-horizontal" action="img/subir_img.php?item=producto" method="post"  enctype="multipart/form-data">
 				<div id="fotoInputContainer" class="control-group">
 					<label class="control-label" for="foto">Foto</label>
 					<div class="controls inline-inputs">
@@ -97,6 +103,20 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
+					<div id="archivoInputContainer" class="control-group">
+						<label class="control-label" for="archivo"></label>
+						<div class="controls inline-inputs">
+							<input type="file" name="archivo_upload" class="input-xlarge" id="archivo_upload1" placeholder="archivo_upload" value="<%= _.escape(item.get('archivo') || '') %>">
+							<span class="help-inline"></span>
+						</div>					
+					</div>
+					<div id="archivoInputContainer" class="control-group">										
+						<div class="progress controls inline-inputs">
+						    <div class="bar bar1"></div >
+						    <div class="percent1">0%</div >
+						</div>
+					</div>
+				</form>
 				<div id="codigoInputContainer" class="control-group">
 					<label class="control-label" for="codigo">Codigo</label>
 					<div class="controls inline-inputs">
@@ -111,15 +131,15 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="statusInputContainer" class="control-group">
-					<label class="control-label" for="status">Status</label>
+				<div id="estatusInputContainer" class="control-group">
+					<label class="control-label" for="estatus">Estatus</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="status" placeholder="Status" value="<%= _.escape(item.get('status') || '') %>">
+						<input type="checkbox" id="estatus" name="estatus" value="1" <% if(_.escape(item.get('estatus'))==1) { %> checked<%} %>> 						
 						<span class="help-inline"></span>
 					</div>
 				</div>
 			</fieldset>
-		</form>
+		</div>
 
 		<!-- delete button is is a separate form to prevent enter key from triggering a delete -->
 		<form id="deleteProductoButtonContainer" class="form-horizontal" onsubmit="return false;">

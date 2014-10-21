@@ -52,7 +52,7 @@ class VentaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Id,ProductoId,PrecioSugerido,PrecioFinal,CajaId,Fecha,Comentarios,Estatus'
+				new CriteriaFilter('Id,Total,CajaId,Fecha,Comentarios,Estatus'
 				, '%'.$filter.'%')
 			);
 
@@ -153,9 +153,7 @@ class VentaController extends AppBaseController
 			// this is an auto-increment.  uncomment if updating is allowed
 			// $venta->Id = $this->SafeGetVal($json, 'id');
 
-			$venta->ProductoId = $this->SafeGetVal($json, 'productoId');
-			$venta->PrecioSugerido = $this->SafeGetVal($json, 'precioSugerido');
-			$venta->PrecioFinal = $this->SafeGetVal($json, 'precioFinal');
+			$venta->Total = $this->SafeGetVal($json, 'total');			
 			$venta->CajaId = $this->SafeGetVal($json, 'cajaId');
 			$venta->Fecha = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'fecha')));
 			$venta->Comentarios = $this->SafeGetVal($json, 'comentarios');
@@ -204,9 +202,7 @@ class VentaController extends AppBaseController
 			// this is a primary key.  uncomment if updating is allowed
 			// $venta->Id = $this->SafeGetVal($json, 'id', $venta->Id);
 
-			$venta->ProductoId = $this->SafeGetVal($json, 'productoId', $venta->ProductoId);
-			$venta->PrecioSugerido = $this->SafeGetVal($json, 'precioSugerido', $venta->PrecioSugerido);
-			$venta->PrecioFinal = $this->SafeGetVal($json, 'precioFinal', $venta->PrecioFinal);
+			$venta->Total = $this->SafeGetVal($json, 'total', $venta->Total);			
 			$venta->CajaId = $this->SafeGetVal($json, 'cajaId', $venta->CajaId);
 			$venta->Fecha = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'fecha', $venta->Fecha)));
 			$venta->Comentarios = $this->SafeGetVal($json, 'comentarios', $venta->Comentarios);

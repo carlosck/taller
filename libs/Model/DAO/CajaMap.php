@@ -53,7 +53,7 @@ class CajaMap implements IDaoMap, IDaoMap2
 			self::$FM = Array();
 			self::$FM["Id"] = new FieldMap("Id","caja","id",true,FM_TYPE_INT,11,null,true);
 			self::$FM["Nombre"] = new FieldMap("Nombre","caja","nombre",false,FM_TYPE_VARCHAR,250,null,false);
-			self::$FM["Status"] = new FieldMap("Status","caja","status",false,FM_TYPE_TINYINT,1,null,false);
+			self::$FM["Estatus"] = new FieldMap("Estatus","caja","estatus",false,FM_TYPE_TINYINT,1,null,false);
 		}
 		return self::$FM;
 	}

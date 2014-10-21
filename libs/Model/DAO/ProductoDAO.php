@@ -40,7 +40,7 @@ class ProductoDAO extends Phreezable
 	public $PrecioSugerido;
 
 	/** @var int */
-	public $Status;
+	public $Estatus;
 
 
 	/**

@@ -52,7 +52,7 @@ class CajaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Id,Nombre,Status'
+				new CriteriaFilter('Id,Nombre,Estatus'
 				, '%'.$filter.'%')
 			);
 
@@ -154,7 +154,7 @@ class CajaController extends AppBaseController
 			// $caja->Id = $this->SafeGetVal($json, 'id');
 
 			$caja->Nombre = $this->SafeGetVal($json, 'nombre');
-			$caja->Status = $this->SafeGetVal($json, 'status');
+			$caja->Estatus = $this->SafeGetVal($json, 'estatus');
 
 			$caja->Validate();
 			$errors = $caja->GetValidationErrors();
@@ -200,7 +200,7 @@ class CajaController extends AppBaseController
 			// $caja->Id = $this->SafeGetVal($json, 'id', $caja->Id);
 
 			$caja->Nombre = $this->SafeGetVal($json, 'nombre', $caja->Nombre);
-			$caja->Status = $this->SafeGetVal($json, 'status', $caja->Status);
+			$caja->Estatus = $this->SafeGetVal($json, 'estatus', $caja->Estatus);
 
 			$caja->Validate();
 			$errors = $caja->GetValidationErrors();

@@ -316,9 +316,9 @@ var page = {
 
 		page.venta.save({
 
-			'productoId': $('select#productoId').val(),
-			'precioSugerido': $('input#precioSugerido').val(),
-			'precioFinal': $('input#precioFinal').val(),
+			
+			
+			'total': $('input#total').val(),
 			'cajaId': $('select#cajaId').val(),
 			'fecha': $('input#fecha').val()+' '+$('input#fecha-time').val(),
 			'comentarios': $('input#comentarios').val(),

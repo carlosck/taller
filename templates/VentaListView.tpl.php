@@ -35,13 +35,15 @@
 		<thead>
 			<tr>
 				<th id="header_Id">Id<% if (page.orderBy == 'Id') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_ProductoId">Producto Id<% if (page.orderBy == 'ProductoId') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_PrecioSugerido">Precio Sugerido<% if (page.orderBy == 'PrecioSugerido') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_PrecioFinal">Precio Final<% if (page.orderBy == 'PrecioFinal') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+								
 				<th id="header_CajaId">Caja Id<% if (page.orderBy == 'CajaId') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
 				<th id="header_Fecha">Fecha<% if (page.orderBy == 'Fecha') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Comentarios">Comentarios<% if (page.orderBy == 'Comentarios') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Total">Total<% if (page.orderBy == 'Total') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
+				
 				<th id="header_Estatus">Estatus<% if (page.orderBy == 'Estatus') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 -->
 			</tr>
@@ -50,13 +52,13 @@
 		<% items.each(function(item) { %>
 			<tr id="<%= _.escape(item.get('id')) %>">
 				<td><%= _.escape(item.get('id') || '') %></td>
-				<td><%= _.escape(item.get('productoId') || '') %></td>
-				<td><%= _.escape(item.get('precioSugerido') || '') %></td>
-				<td><%= _.escape(item.get('precioFinal') || '') %></td>
-				<td><%= _.escape(item.get('cajaId') || '') %></td>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
 				<td><%if (item.get('fecha')) { %><%= _date(app.parseDate(item.get('fecha'))).format('MMM D, YYYY h:mm A') %><% } else { %>NULL<% } %></td>
 				<td><%= _.escape(item.get('comentarios') || '') %></td>
+				<td><%= _.escape(item.get('cajaId') || '') %></td>
+				<td><%= _.escape(item.get('total') || '') %></td>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
+				
 				<td><%= _.escape(item.get('estatus') || '') %></td>
 -->
 			</tr>
@@ -78,24 +80,12 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="productoIdInputContainer" class="control-group">
-					<label class="control-label" for="productoId">Producto Id</label>
+				
+				
+				<div id="totalInputContainer" class="control-group">
+					<label class="control-label" for="total">Total</label>
 					<div class="controls inline-inputs">
-						<select id="productoId" name="productoId"></select>
-						<span class="help-inline"></span>
-					</div>
-				</div>
-				<div id="precioSugeridoInputContainer" class="control-group">
-					<label class="control-label" for="precioSugerido">Precio Sugerido</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="precioSugerido" placeholder="Precio Sugerido" value="<%= _.escape(item.get('precioSugerido') || '') %>">
-						<span class="help-inline"></span>
-					</div>
-				</div>
-				<div id="precioFinalInputContainer" class="control-group">
-					<label class="control-label" for="precioFinal">Precio Final</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="precioFinal" placeholder="Precio Final" value="<%= _.escape(item.get('precioFinal') || '') %>">
+						<input type="text" class="input-xlarge" id="total" placeholder="Total" value="<%= _.escape(item.get('total') || '') %>">
 						<span class="help-inline"></span>
 					</div>
 				</div>

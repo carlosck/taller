@@ -265,7 +265,7 @@ var page = {
 		page.caja.save({
 
 			'nombre': $('input#nombre').val(),
-			'status': $('input#status').val()
+			'estatus':  $('input#estatus').is(':checked') ? 1 : 0
 		}, {
 			wait: true,
 			success: function(){

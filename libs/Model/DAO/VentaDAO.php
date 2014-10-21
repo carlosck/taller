@@ -25,13 +25,7 @@ class VentaDAO extends Phreezable
 	public $Id;
 
 	/** @var int */
-	public $ProductoId;
-
-	/** @var double */
-	public $PrecioSugerido;
-
-	/** @var double */
-	public $PrecioFinal;
+	public $Total;	
 
 	/** @var int */
 	public $CajaId;
@@ -55,14 +49,7 @@ class VentaDAO extends Phreezable
 		return $this->_phreezer->GetManyToOne($this, "venta_ibfk_2");
 	}
 
-	/**
-	 * Returns the foreign object based on the value of ProductoId
-	 * @return Producto
-	 */
-	public function GetProducto()
-	{
-		return $this->_phreezer->GetManyToOne($this, "venta_ibfk_1");
-	}
+	
 
 
 }

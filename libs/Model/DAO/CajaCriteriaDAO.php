@@ -51,21 +51,21 @@ class CajaCriteriaDAO extends Criteria
 	public $Nombre_IsEmpty;
 	public $Nombre_BitwiseOr;
 	public $Nombre_BitwiseAnd;
-	public $Status_Equals;
-	public $Status_NotEquals;
-	public $Status_IsLike;
-	public $Status_IsNotLike;
-	public $Status_BeginsWith;
-	public $Status_EndsWith;
-	public $Status_GreaterThan;
-	public $Status_GreaterThanOrEqual;
-	public $Status_LessThan;
-	public $Status_LessThanOrEqual;
-	public $Status_In;
-	public $Status_IsNotEmpty;
-	public $Status_IsEmpty;
-	public $Status_BitwiseOr;
-	public $Status_BitwiseAnd;
+	public $Estatus_Equals;
+	public $Estatus_NotEquals;
+	public $Estatus_IsLike;
+	public $Estatus_IsNotLike;
+	public $Estatus_BeginsWith;
+	public $Estatus_EndsWith;
+	public $Estatus_GreaterThan;
+	public $Estatus_GreaterThanOrEqual;
+	public $Estatus_LessThan;
+	public $Estatus_LessThanOrEqual;
+	public $Estatus_In;
+	public $Estatus_IsNotEmpty;
+	public $Estatus_IsEmpty;
+	public $Estatus_BitwiseOr;
+	public $Estatus_BitwiseAnd;
 
 }
 

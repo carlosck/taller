@@ -28,7 +28,7 @@ class CajaDAO extends Phreezable
 	public $Nombre;
 
 	/** @var int */
-	public $Status;
+	public $Estatus;
 
 
 	/**

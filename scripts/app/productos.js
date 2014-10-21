@@ -249,6 +249,33 @@ var page = {
 			}
 		});
 
+		var bar = $("#miform1").find('.bar');
+		var percent = $('.percent1');
+		var status = $('#status1');
+		
+		console.log(bar);
+		console.log("-----------------------");
+		$('#miform1').ajaxForm({
+		    beforeSend: function() {
+		        status.empty();
+		        var percentVal = '0%';
+		        bar.width(percentVal)
+		        percent.html(percentVal);
+		    },
+		    uploadProgress: function(event, position, total, percentComplete) {
+		        var percentVal = percentComplete + '%';
+		        bar.width(percentVal)
+		        percent.html(percentVal);
+		    },
+			complete: function(xhr) {				
+				$("#foto").val($.trim(xhr.responseText));
+			}
+		});		
+		$("#archivo_upload1").on("change",function()
+		{
+			console.log("change");
+			$('#miform1').submit();
+		});
 
 		if (showDeleteButton) {
 			// attach click handlers to the delete buttons
@@ -295,7 +322,7 @@ var page = {
 			'foto': $('input#foto').val(),
 			'codigo': $('input#codigo').val(),
 			'precioSugerido': $('input#precioSugerido').val(),
-			'status': $('input#status').val()
+			'estatus':  $('input#estatus').is(':checked') ? 1 : 0
 		}, {
 			wait: true,
 			success: function(){

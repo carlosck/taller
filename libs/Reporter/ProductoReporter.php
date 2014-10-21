@@ -24,11 +24,12 @@ class ProductoReporter extends Reporter
 
 	public $Id;
 	public $SeccionId;
+	public $Seccion;
 	public $Nombre;
 	public $Foto;
 	public $Codigo;
 	public $PrecioSugerido;
-	public $Status;
+	public $Estatus;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -41,15 +42,17 @@ class ProductoReporter extends Reporter
 	static function GetCustomQuery($criteria)
 	{
 		$sql = "select
-			'custom value here...' as CustomFieldExample
+			`seccion`.`nombre` as Seccion
 			,`producto`.`id` as Id
 			,`producto`.`seccion_id` as SeccionId
 			,`producto`.`nombre` as Nombre
 			,`producto`.`foto` as Foto
 			,`producto`.`codigo` as Codigo
 			,`producto`.`precio_sugerido` as PrecioSugerido
-			,`producto`.`status` as Status
-		from `producto`";
+			,`producto`.`estatus` as Estatus
+		from `producto`
+		join seccion on seccion.id = producto.seccion_id
+		";
 
 		// the criteria can be used or you can write your own custom logic.
 		// be sure to escape any user input with $criteria->Escape()
