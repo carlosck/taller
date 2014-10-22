@@ -208,7 +208,7 @@ class ProductoController extends AppBaseController
 			$producto->Foto = $this->SafeGetVal($json, 'foto', $producto->Foto);
 			$producto->Codigo = $this->SafeGetVal($json, 'codigo', $producto->Codigo);
 			$producto->PrecioSugerido = $this->SafeGetVal($json, 'precioSugerido', $producto->PrecioSugerido);
-			$producto->Estatus = $this->SafeGetVal($json, 'status', $producto->Estatus);
+			$producto->Estatus = $this->SafeGetVal($json, 'estatus', $producto->Estatus);
 
 			$producto->Validate();
 			$errors = $producto->GetValidationErrors();

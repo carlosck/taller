@@ -104,3 +104,155 @@ span.help-inline:empty {
   background-size: cover;
   background-position: center;
 }
+/*
+`8.`888b           ,8' 8 8888888888   b.             8 8 888888888o.      8 8888888888   8 888888888o.
+ `8.`888b         ,8'  8 8888         888o.          8 8 8888    `^888.   8 8888         8 8888    `88.
+  `8.`888b       ,8'   8 8888         Y88888o.       8 8 8888        `88. 8 8888         8 8888     `88
+   `8.`888b     ,8'    8 8888         .`Y888888o.    8 8 8888         `88 8 8888         8 8888     ,88
+    `8.`888b   ,8'     8 888888888888 8o. `Y888888o. 8 8 8888          88 8 888888888888 8 8888.   ,88'
+     `8.`888b ,8'      8 8888         8`Y8o. `Y88888o8 8 8888          88 8 8888         8 888888888P'
+      `8.`888b8'       8 8888         8   `Y8o. `Y8888 8 8888         ,88 8 8888         8 8888`8b
+       `8.`888'        8 8888         8      `Y8o. `Y8 8 8888        ,88' 8 8888         8 8888 `8b.
+        `8.`8'         8 8888         8         `Y8o.` 8 8888    ,o88P'   8 8888         8 8888   `8b.
+         `8.`          8 888888888888 8            `Yo 8 888888888P'      8 888888888888 8 8888     `88.*/
+.vender .searchContainer
+{
+  width: 800px;
+  clear: both;
+  margin-bottom: 25px;
+  position: relative;
+  
+}
+.vender .searchContainer #filter
+{
+  width: 450px;
+}
+.vender .show_bg
+{
+  width: 250px;
+  height: 150px;
+  clear: both;
+  margin:  20px auto;
+}
+.autocomplete_mask
+{
+  width: 450px;
+  height: 450px;
+  max-height: 450px;  
+  position: absolute;
+  left: 0;
+  top: 38px;
+}
+.autocomplete_item_container
+{
+  width: 463px;
+  position: relative;
+  float: left;
+  background-color: white; 
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+  display: none;    
+}
+.autocomplete_item
+{
+  width: 463px;
+  height: 30px;
+  position: relative;
+  float: left;
+  display: block;
+  text-align: left; 
+  
+}
+.autocomplete_item:hover
+{
+  background-color: #333 ;
+  text-decoration: none;
+}
+.autocomplete_item:hover p
+{
+  color: white;
+}
+.autocomplete_item p
+{
+  font-size: 14px;
+  color: #333;
+  padding-left: 25px;
+  margin-top: 5px;
+  text-decoration: none;
+}
+#cont_form
+{
+  width: 800px;
+  position: relative;
+  clear: both;
+}
+#cont_form .form-horizontal
+{
+  width: 400px;
+  float: left;
+  clear: both;
+}
+#cont_form .buttonContainer
+{
+  width: 100%;
+  clear: both
+}
+#resumen_total
+{
+  width: 400px;
+  position: relative;
+  float: left;
+
+}
+#resumen_item_container
+{
+  width: 400px;
+  position: relative;
+  border: 1px solid #ccc;
+}
+.resumen_item
+{
+  width: 400px;
+  height: 50px;
+  position: relative;
+}
+.resumen_item_quitar
+{
+  width: 20px;
+  height: 50px;
+  position: relative;
+  float: left;
+  
+}
+.resumen_item_nombre
+{
+  width: 100px;
+  height: 50px;
+  position: relative;
+  float: left;
+  text-align: left;  
+}
+.resumen_item_cantidad
+{
+  width: 25px;
+  height: 50px;
+  position: relative;
+  float: left;
+  text-align: center;
+}
+.resumen_item_precio_final
+{
+  width: 100px;
+  height: 50px;
+  position: relative;
+  float: left;
+  text-align: right;
+}
+.resumen_item_precio_total
+{
+  width: 100px;
+  height: 50px;
+  position: relative;
+  float: left;
+  text-align: right;
+}

@@ -3,7 +3,7 @@
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
-require_once("Model/Vender.php");
+require_once("Model/Venta.php");
 require_once("Model/Producto.php");
 
 /**
@@ -38,7 +38,7 @@ class VenderController extends AppBaseController
    */
   public function ListView()
   {
-    $this->Render();
+    $this->Render("VenderListView");
   }
 
   /**

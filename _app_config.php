@@ -117,7 +117,7 @@ GlobalConfig::$ROUTE_MAP = array(
 	'DELETE:api/venta/(:num)' => array('route' => 'Venta.Delete', 'params' => array('id' => 2)),
 
 	// Venta
-	'GET:venta' => array('route' => 'Vender.ListView'),
+	'GET:vender' => array('route' => 'Vender.ListView'),
 	
 		
 
