@@ -28,7 +28,7 @@
     <input id='filter' type="text" placeholder="Search..." />
     <button class='btn add-on'><i class="icon-search"></i></button>
     <div class="autocomplete_mask">
-      <div class="autocomplete_item_container">
+      <div id="autocomplete_item_container" class="autocomplete_item_container">
         <a href="#" class="autocomplete_item">
           <p>
             Estereo Sony 1500
@@ -64,66 +64,61 @@
   </div>
   <div id="cont_form">
     <form class="form-horizontal" onsubmit="return false;">
-        <div class="show_bg" style="background-image: url('img/productos/interior.png')"></div>
+        <div class="show_bg" style="background-color: gray;"></div>
         <fieldset>
           <div id="nombreInputContainer" class="control-group">
             <label class="control-label" for="nombre">Nombre</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="nombre" placeholder="Nombre" value="Nombre">
+              <input type="text" class="input-xlarge " id="nombre" placeholder="Nombre" value="" readonly>
+              <input type="hidden"  id="id_product_hidden" >
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="seccionInputContainer" class="control-group">
             <label class="control-label" for="seccion">Sección</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="seccion" placeholder="Sección" value="Sección">
+              <input type="text" class="input-xlarge" id="seccion" placeholder="Sección" value="" readonly>
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="codigoInputContainer" class="control-group">
             <label class="control-label" for="codigo">Codigo</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="codigo" placeholder="Codigo" value="123456789">
+              <input type="text" class="input-xlarge" id="codigo" placeholder="Codigo" value="" readonly>
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="cantidadInputContainer" class="control-group">
             <label class="control-label" for="cantidad">Cantidad</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="cantidad" placeholder="cantidad" value="1">
+              <input type="text" class="input-xlarge" id="cantidad" placeholder="cantidad" value="">
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="precioSugeridoInputContainer" class="control-group">
             <label class="control-label" for="precioSugerido">Precio Sugerido</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="precio_sugerido" placeholder="Precio Sugerido" value="1500">
+              <input type="text" class="input-xlarge" id="precio_sugerido" placeholder="Precio Sugerido" value="" readonly>
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="precioFinalInputContainer" class="control-group">
             <label class="control-label" for="precioFinal">Precio Final</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="precio_final" placeholder="Precio Final" value="1450">
+              <input type="text" class="input-xlarge" id="precio_final" placeholder="Precio Final" value="" >
               <span class="help-inline"></span>
             </div>
           </div>
           <div id="totalInputContainer" class="control-group">
             <label class="control-label" for="total">Total</label>
             <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="total" placeholder="Total" value="">
+              <input type="text" class="input-xlarge" id="total" placeholder="Total" value="" readonly>
               <span class="help-inline"></span>
             </div>
           </div>
           
           
-          <div id="comentariosInputContainer" class="control-group">
-            <label class="control-label" for="comentarios">Comentarios</label>
-            <div class="controls inline-inputs">
-              <input type="text" class="input-xlarge" id="comentarios" placeholder="Comentarios" value="">
-              <span class="help-inline"></span>
-            </div>
-          </div>
+          
          
         </fieldset>
       </form>
@@ -140,12 +135,34 @@
     <div class="resumen_item_precio_total">Total</div>  
   </div>
   <div id="resumen_item_container">
-    <div class="resumen_item">
-      <a class="resumen_item_quitar" href="#"><i class="icon-remove"></i></a>  
-      <div class="resumen_item_nombre">Sony 1500</div>  
-      <div class="resumen_item_cantidad">100</div>
-      <div class="resumen_item_precio_final">5400.00</div>  
-      <div class="resumen_item_precio_total">540000.00</div>  
+    
+  </div>
+  <div id="resumen_item_total" class="resumen_item total">
+    <div class="resumen_item_quitar" ></div>  
+    <div class="resumen_item_nombre"></div>  
+    <div class="resumen_item_cantidad"></div>
+    <div class="resumen_item_precio_final">Total</div>  
+    <div class="resumen_item_precio_total"></div>  
+  </div>
+  <div id="resumen_item_pago" class="resumen_item ">
+    <div class="resumen_item_quitar" ></div>  
+    <div class="resumen_item_nombre"></div>  
+    <div class="resumen_item_cantidad"></div>
+    <div class="resumen_item_precio_final">Pago</div>  
+    <div class="resumen_item_precio_pago"><input type="text" class="input-small" id="pago" placeholder="0.00" value=""></div>  
+  </div>
+  <div id="resumen_item_cambio" class="resumen_item">
+    <div class="resumen_item_quitar" ></div>  
+    <div class="resumen_item_nombre"></div>  
+    <div class="resumen_item_cantidad"></div>
+    <div class="resumen_item_precio_final">Cambio</div>  
+    <div class="resumen_item_precio_total"></div>  
+  </div>
+  <div id="comentariosInputContainer" class="control-group">
+    <label class="control-label" for="comentarios">Comentarios</label>
+    <div class="controls inline-inputs">
+      <input type="text" class="input-xlarge" id="comentarios" placeholder="Comentarios" value="">
+      <span class="help-inline"></span>
     </div>
   </div>
   <p id="newButtonContainer" class="buttonContainer pull-right">

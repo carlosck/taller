@@ -118,7 +118,8 @@ GlobalConfig::$ROUTE_MAP = array(
 
 	// Venta
 	'GET:vender' => array('route' => 'Vender.ListView'),
-	
+	// Corte
+	'GET:corte/(:any)' => array('route' => 'Corte.ListView', 'params' => array('id' => 1)),
 		
 
 	// catch any broken API urls

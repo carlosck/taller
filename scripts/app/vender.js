@@ -10,17 +10,24 @@ var page = {
   field: null,
   imagen:null,
   nombre: null,
+  id_hidden: null,
   seccion: null,
   seccion_id: null,
   codigo: null,
-  cantidad: false,
-  precio_sugerido: false,
-  precio_final: false,
-  total: false,
-  precio_comentarios: false,
-  resultados: false,
+  cantidad: null,
+  precio_sugerido: null,
+  precio_final: null,
+  total_venta: null,
+  comentarios: null,
+  resultados: null,
   resultados_container: false,
-  
+  product_array: null,
+  resumen_item_container: null,
+  resumen_item_total: null,
+  resumen_total: null,
+  resumen_item_pago: null,
+  resumen_item_cambio: null,
+  busy:false,
   
   
 
@@ -31,7 +38,7 @@ var page = {
     // ensure initialization only occurs once
     if (page.isInitialized || page.isInitializing) return;
     page.isInitializing = true;
-
+    page.isInitialized = true;
     if (!$.isReady && console) console.warn('page was initialized before dom is ready.  views may not render properly.');
 
     // make the new button clickable
@@ -40,7 +47,7 @@ var page = {
     
     page.field.on('keyup',function() {      
       valor =page.field.val();
-      console.log("c="+valor);
+      
       if ( valor.length> 3)
       {
         page.search(valor);
@@ -64,7 +71,7 @@ var page = {
 
     $("#closeVentaButton").click(function(e) {
       e.preventDefault();
-      page.agregar();
+      page.cerrar_venta();
     });
 
 
@@ -76,10 +83,11 @@ var page = {
     });
     
 
-    page.resultados_container=$(".autocomplete_item_container")
+    page.resultados_container= $("#autocomplete_item_container")
     
     page.imagen =$(".show_bg"),
     page.nombre =$("#nombre"),
+    page.id_hidden =$("#id_product_hidden"),
     page.seccion =$("#seccion"),
     page.seccion_id =$("#seccion_id"),
     page.codigo =$("#codigo"),
@@ -87,16 +95,31 @@ var page = {
     page.precio_sugerido =$("#precio_sugerido"),
     page.precio_final =$("#precio_final"),
     page.total =$("#total"),
-    page.precio_comentarios =$("#precio_comentarios"),    
-      
+    page.comentarios =$("#comentarios"),    
+    page.resumen_item_container=$("#resumen_item_container"),    
+    page.resumen_item_total=$("#resumen_item_total .resumen_item_precio_total"),
+    page.resumen_item_pago=$("#pago"),
+    page.resumen_item_cambio=$("#resumen_item_cambio .resumen_item_precio_total"),
+
     page.cantidad.on('keyup',function() {      
       page.update_total();      
     });
     page.precio_final.on('keyup',function() {      
       page.update_total();      
     });
+    page.resumen_item_pago.on('keyup',function() {      
+      page.update_cambio();      
+    });
 
-      page.isInitialized = true;
+    page.resumen_item_container.on("click",".resumen_item_quitar",function(e) {
+      e.preventDefault();
+      item_id=$(this).attr("item");
+
+      page.del_product(item_id);
+    });
+
+    page.product_array=new Array();
+      
       page.isInitializing = false;
     
   },
@@ -108,13 +131,12 @@ var page = {
    */
   search: function(valor) {
     // persist the params so that paging/sorting/filtering will play together nicely
-    console.log("buscar");
+    
     $.getJSON( "xcm/autocomplete.php", { to_find: valor } )
       .done(function( json ) {
         page.resultados=json.data.list
         list = json.data.list
-        console.log(  list);
-        console.log(list.length)
+        
 
         if(list.length ==0)
         {
@@ -133,7 +155,10 @@ var page = {
           }
           
         }
-        page.resultados_container.show();
+        if(list.length==1)
+          page.setProduct(page.resultados[0]);
+        else          
+          page.resultados_container.show();
       })
       .fail(function( jqxhr, textStatus, error ) {
         var err = textStatus + ", " + error;
@@ -147,10 +172,11 @@ var page = {
    */
    setProduct: function(item)
    {
-    console.log(item);
+    
     page.resultados_container.hide();
-    page.imagen.css("background-image","url(img/productos/"+item.imagen+")")
+    page.imagen.css("background-image","url(img/productos/"+item.foto+")")
     page.nombre.val(item.nombre)
+    page.id_hidden.val(item.id)
     page.seccion.val(item.seccion)
     page.codigo.val(item.codigo)
     page.cantidad.val(1)
@@ -165,11 +191,111 @@ var page = {
     canti= page.cantidad.val()
     preci= page.precio_final.val()
     page.total.val(canti*preci)
+
    },
    add_product: function()
    {
+    nombre = page.nombre.val()
+    id = page.id_hidden.val()
+    canti= page.cantidad.val()
+    preci= page.precio_final.val()
+    total = canti*preci
+    page.product_array.push({nombre:nombre,id:id,cantidad:canti,precio:preci,total:total});
+    page.update_venta();
+   },
+   del_product: function(item)
+   {
     
-   }
+    page.product_array.splice(item,1);
+    page.update_venta();
+   },
+   update_venta:function ()
+   {
+    page.resumen_item_container.html("");
+    total=0
+    for(var i=0;i<page.product_array.length;i++)
+    {
+      producto=page.product_array[i];
+      cadena='<div class="resumen_item">'+
+      '<a class="resumen_item_quitar" href="#" item="'+i+'"><i class="icon-remove"></i></a>  '+
+      '<div class="resumen_item_nombre">'+producto.nombre+'</div>  '+
+      '<div class="resumen_item_cantidad">'+producto.cantidad+'</div>'+
+      '<div class="resumen_item_precio_final">'+producto.precio+'</div>  '+
+      '<div class="resumen_item_precio_total">'+producto.total+'</div>  '+
+    '</div>';
+      page.resumen_item_container.append(cadena);
+      total+=producto.total
+    }
+    page.total_venta= total
+    page.resumen_item_total.html(total);
+    page.update_cambio();
+   },
+   update_cambio: function()
+   {
+    
+    pago= page.resumen_item_pago.val()
+    cambio= pago-page.total_venta
+    if(cambio<0)
+      page.resumen_item_cambio.addClass("error") ;
+    else
+      page.resumen_item_cambio.removeClass("error") ;
+    page.resumen_item_cambio.html(cambio)
+   },
+   cerrar_venta: function()
+   {
+      console.log(page.product_array);
+      comentario=page.comentarios.val();
+      if(page.product_array.length<1)
+      {
+        alert("no hay productos agregados");
+        return false
+      }
+      if (page.busy)
+      {
+        return false;
+      }
+      page.busy=true;
+
+      var request = $.ajax({
+        url: "xcm/save.php",
+        type: "POST",
+        data: {venta:page.product_array,comentario:comentario},        
+      });
+       
+      request.done(function( msg ) {
+        console.log(msg);
+        error=msg.data.error;
+        console.log(error);
+        if(error.ID==0)
+        {
+          page.restart();
+        }
+      });
+       
+      request.fail(function( jqXHR, textStatus ) {
+        alert( "Request failed: " + textStatus );
+      });
+   },
+   restart: function()
+   {
+    page.imagen.css("background-image","none")
+    page.nombre.val("")
+    page.id_hidden.val("")
+    page.seccion.val("")
+    page.codigo.val("")
+    page.cantidad.val("")
+    page.precio_sugerido.val("")
+    page.precio_final.val("")
+    page.total.val("")
+    page.comentarios.val("")
+
+    page.resumen_item_total.html("");
+    page.resumen_item_container.html("");
+    page.resumen_item_cambio.html("");
+    page.resumen_item_pago.val("");
+    page.field.val("");
+    page.busy=false;
+   },
   showDetailDialog: function(m) {
 
     // show the modal dialog

@@ -132,7 +132,7 @@ span.help-inline:empty {
   width: 250px;
   height: 150px;
   clear: both;
-  margin:  20px auto;
+  margin:  20px 186px;
 }
 .autocomplete_mask
 {
@@ -151,7 +151,8 @@ span.help-inline:empty {
   background-color: white; 
   border: 1px solid #ccc;
   border-radius: 4px; 
-  display: none;    
+  display: none;  
+  z-index: 10;  
 }
 .autocomplete_item
 {
@@ -182,9 +183,10 @@ span.help-inline:empty {
 }
 #cont_form
 {
-  width: 800px;
+  width: 520px;
   position: relative;
-  clear: both;
+  float: left;
+  
 }
 #cont_form .form-horizontal
 {
@@ -255,4 +257,22 @@ span.help-inline:empty {
   position: relative;
   float: left;
   text-align: right;
+}
+#resumen_item_total,#resumen_item_cambio
+{
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+#resumen_item_pago .resumen_item_precio_final
+{
+  margin-right: 10px
+}
+#pago
+{
+  text-align: right
+}
+#resumen_item_cambio .resumen_item_precio_total.error
+{
+  color: red;
 }
