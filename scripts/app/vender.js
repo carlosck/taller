@@ -1,3 +1,7 @@
+function number_format(valor)
+{
+  return parseFloat(valor).toFixed(2)
+}
 /**
  * View logic for Ventas
  */
@@ -180,9 +184,9 @@ var page = {
     page.seccion.val(item.seccion)
     page.codigo.val(item.codigo)
     page.cantidad.val(1)
-    page.precio_sugerido.val(item.precio_sugerido)
-    page.precio_final.val(item.precio_sugerido)
-    page.total.val(item.precio_sugerido)
+    page.precio_sugerido.val(number_format(item.precio_sugerido))
+    page.precio_final.val(number_format(item.precio_sugerido))
+    page.total.val(number_format(item.precio_sugerido))
     page.comentarios.val("")
     
    },
@@ -190,7 +194,7 @@ var page = {
    {
     canti= page.cantidad.val()
     preci= page.precio_final.val()
-    page.total.val(canti*preci)
+    page.total.val(number_format(canti*preci))
 
    },
    add_product: function()
@@ -220,14 +224,14 @@ var page = {
       '<a class="resumen_item_quitar" href="#" item="'+i+'"><i class="icon-remove"></i></a>  '+
       '<div class="resumen_item_nombre">'+producto.nombre+'</div>  '+
       '<div class="resumen_item_cantidad">'+producto.cantidad+'</div>'+
-      '<div class="resumen_item_precio_final">'+producto.precio+'</div>  '+
-      '<div class="resumen_item_precio_total">'+producto.total+'</div>  '+
+      '<div class="resumen_item_precio_final">'+number_format(producto.precio)+'</div>  '+
+      '<div class="resumen_item_precio_total">'+number_format(producto.total)+'</div>  '+
     '</div>';
       page.resumen_item_container.append(cadena);
       total+=producto.total
     }
     page.total_venta= total
-    page.resumen_item_total.html(total);
+    page.resumen_item_total.html(number_format(total));
     page.update_cambio();
    },
    update_cambio: function()
@@ -239,7 +243,7 @@ var page = {
       page.resumen_item_cambio.addClass("error") ;
     else
       page.resumen_item_cambio.removeClass("error") ;
-    page.resumen_item_cambio.html(cambio)
+    page.resumen_item_cambio.html(number_format(cambio))
    },
    cerrar_venta: function()
    {

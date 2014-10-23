@@ -70,8 +70,16 @@ class CorteController extends AppBaseController
         // $criteria->Area_Equals = $this->GetCurrentUser()->Area;
         // $criteria->Fecha_Equals = $this->GetCurrentUser()->Area;
 
-        $proyectos = $this->Phreezer->Query('CorteReporter',$fil);
+        $proyectos = $this->Phreezer->Query('CorteReporter',$fil);        
         $output->rows = $proyectos->ToObjectArray(true, $this->SimpleObjectParams());
+
+        $filtro=new StdClass();
+        foreach($output->rows as $row)
+        {
+          $filtro->id=  $row->id;
+          $subquery = $this->Phreezer->Query('SubCorteReporter',$filtro);        
+          $row->productos = $subquery->ToObjectArray(true, $this->SimpleObjectParams());
+        }        
         $output->totalResults = count($output->rows);
         
         $output->totalPages = 1;

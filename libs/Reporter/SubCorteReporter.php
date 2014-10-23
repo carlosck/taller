@@ -15,7 +15,7 @@ require_once("verysimple/Phreeze/Reporter.php");
  * @author ClassBuilder
  * @version 1.0
  */
-class CorteReporter extends Reporter
+class SubCorteReporter extends Reporter
 {
 
   // the properties in this class must match the columns returned by GetCustomQuery().
@@ -24,9 +24,11 @@ class CorteReporter extends Reporter
 
   public $Id;
   public $CajaId;
-  public $Fecha;
-  public $Comentarios;
-  public $Estatus;
+  public $ProductoId;
+  public $Producto;
+  public $Sugerido;
+  public $Precio;
+  public $Cantidad;
   public $Caja;
   public $Total;
 
@@ -42,17 +44,17 @@ class CorteReporter extends Reporter
   {
     $sql = "select
       
-      `venta`.`id` as Id
-      ,`venta`.`total` as Total      
-      ,`venta`.`caja_id` as CajaId
-      ,`venta`.`fecha` as Fecha
-      ,`venta`.`comentarios` as Comentarios
-      ,`venta`.`estatus` as Estatus
-      ,`caja`.`nombre` as Caja
-    from `venta`
-    join caja on caja.id = venta.caja_id
-    where Month(venta.fecha)=".$criteria->month. " and Day(venta.fecha)=".$criteria->day." and Year(venta.fecha)=".$criteria->year. "
-     order by fecha desc";
+      `venta_producto`.`id` as Id           
+      ,`venta_producto`.`producto_id` as ProductoId
+      ,`producto`.`nombre` as Producto
+      ,`producto`.`precio_sugerido` as Sugerido
+      ,`venta_producto`.`precio` as Precio
+      ,`venta_producto`.`cantidad` as Cantidad
+      ,`venta_producto`.`total` as Total       
+    from `venta_producto`
+    join producto on producto.id = venta_producto.producto_id
+    where venta_producto.venta_id=".$criteria->id." 
+    ";
 
     // the criteria can be used or you can write your own custom logic.
     // be sure to escape any user input with $criteria->Escape()

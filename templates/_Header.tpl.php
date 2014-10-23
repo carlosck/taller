@@ -67,7 +67,7 @@
 								<li <?php if ($this->nav=='secciones') { echo 'class="active"'; } ?>><a href="./secciones">Secciones</a></li>
 								<li <?php if ($this->nav=='ventas') { echo 'class="active"'; } ?>><a href="./ventas">Resumen</a></li>
 								<li <?php if ($this->nav=='vender') { echo 'class="active"'; } ?>><a href="./vender">Venta</a></li>
-								<li <?php if ($this->nav=='corte') { echo 'class="active"'; } ?>><a href="./corte">Corte</a></li>
+								<li <?php if ($this->nav=='corte') { echo 'class="active"'; } ?>><a href="./corte/0">Corte</a></li>
 								</ul>
 								</li>
 							</ul>

@@ -74,7 +74,7 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<form id="miform1" class="form-horizontal" action="img/subir_img.php?item=seccion" method="post"  enctype="multipart/form-data">
+				<form id="miform1" class="form-horizontal" action="xcm/subir_img.php?item=seccion" method="post"  enctype="multipart/form-data">
 				<div id="fotoInputContainer" class="control-group">
 					<label class="control-label" for="foto">Foto</label>
 					<div class="controls inline-inputs">

@@ -1,7 +1,5 @@
- <?php
- header('Content-type: application/json');
-// echo "<pre>";
- // var_dump($_POST);
+<?php @header('Content-type: application/json');
+
  require_once("clases.php");
  require_once("conectar.php");
 

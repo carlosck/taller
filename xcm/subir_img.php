@@ -5,10 +5,10 @@
  switch($item)
  {
 	case "seccion":
-		$folder="secciones";
+		$folder="../img/secciones";
 		break;
 	case "producto":
-		$folder="productos";
+		$folder="../img/productos";
 		break;
  }
 

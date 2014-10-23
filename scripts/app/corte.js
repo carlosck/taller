@@ -1,3 +1,4 @@
+
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
         validLabels = /^(data|css):/,
@@ -48,7 +49,7 @@ var page = {
         .on('changeDate', function(ev){
           console.log($('.date-picker').datepicker({ dateFormat: 'yyyy-mm-dd' }).val());
           console.log($('#fecha').val());
-          window.location.href="./control/"+($('#fecha').val()).replace(/-/g,"_");
+          window.location.href="./corte/"+($('#fecha').val()).replace(/-/g,"_");
           $('.date-picker').datepicker('hide');
         });
     } catch (error) {
@@ -58,50 +59,7 @@ var page = {
     
     $('.timepicker-default').timepicker({ defaultTime: 'value' });
     
-    $(':checkbox').click(function(e){
-      
-      
-
-      tipo=$(this).attr("class")
-      page.eltipo=tipo
-      empleado=$(this).data("id")
-      fecha=$(this).data("date")
-      page.elid= empleado
-
-      if($(this).attr("checked")!=undefined)
-      {
-        checado=1
-      }
-      else
-        checado=0
-      
-
-      
-      if(checado==1)
-      {
-        $("#contenido").attr("data-tipo",tipo);
-        $("#contenido").attr("data-empleado",empleado);
-        $("#contenido").attr("data-fecha",fecha);
-        $("#contenido").attr("data-checado",checado);
-        $("#contenido").val("");
-        page.showDetailDialog();
-      }
-      else
-      {
-        $.ajax({
-          type: "POST",
-          url: "getupdate.php",
-          data: { tipo: tipo, id: empleado,fecha:fecha,checado: checado  }
-        })
-          .done(function( msg ) {
-            $("#"+empleado).html(msg)
-          }); 
-      }
-      
-      
-
-      
-    });
+    
 
     $("#saveButton").click(function(e) {
       e.preventDefault();
@@ -151,14 +109,7 @@ var page = {
       
     });
 
-    $(".ver_total").on("click",function(event)
-    {
-        event.preventDefault();
-        var elid= $(this).attr("ti");
-        console.log(elid);
-        //showControlDialog(elid);
-        $('#controlDialog'+elid).modal({ show: true });
-      });
+    
     
     // if (!$.isReady && console) console.warn('page was initialized before dom is ready.  views may not render properly.');
 
